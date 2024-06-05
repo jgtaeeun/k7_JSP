@@ -18,14 +18,14 @@
 	try{
 		dan = Integer.parseInt(request.getParameter("dan"));
 		
-		for (int i =0 ; i<10 ; i ++){
+		for (int i =1 ; i<10 ; i ++){
 		
 			out.print(dan+ "*" +i + "=" + multi(dan, i) + "<br />");
 		}
 	}
 	catch (Exception e){
+		
 		out.println("입력값이 없습니다.<br />"); 
-		dan=0;
 	
 	}
 %>
