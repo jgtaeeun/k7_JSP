@@ -20,7 +20,7 @@ C:\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catali
 
 교재는 tomcat이라는 서블릿 컨테이너를 이용/http://localhost:8080 이용
 
-===================================================================
+===========================
 1장
 #지시어 <%@ page 속성%>
 속성 ) language, contentType, pageEncoding ,import, errorPage , isErrorPage,buffer, autoFlush ,include
