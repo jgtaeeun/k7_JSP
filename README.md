@@ -42,3 +42,69 @@ dan = Integer.parseInt(request.getParameter("dan"));
 예) http://localhost:8080/MissionJSP/gugudan1.jsp   ->에러발생
   http://localhost:8080/MissionJSP/gugudan1.jsp?dan=2  ->실행
  http://localhost:8080/MissionJSP/gugudan1.jsp?name](http://localhost:8080/MustHaveJSP/01DirectiveScript/ScriptElements_trycatch.jsp?num1=200&num2=100       ->입력 여러개일 때 &로 연결 (?  &   &  )
+ ===========================
+ 2장 내장객체
+ <%! %>은   public void _jspService()외부에 있기에 매개변수를 필요로 함
+
+<% %><%= %>은 public void _jspService()내부에 있기에 별도로 선언하거나 객체로 생성하지 않아도 즉시 사용할 수 있음
+ public void _jspService()내부 내장 메서드가 있어서
+final jakarta.servlet.jsp.PageContext pageContext;
+    jakarta.servlet.http.HttpSession session = null;
+    final jakarta.servlet.ServletContext application;
+    final jakarta.servlet.ServletConfig config;
+    jakarta.servlet.jsp.JspWriter out = null;
+    final java.lang.Object page = this;
+    jakarta.servlet.jsp.JspWriter _jspx_out = null;
+    jakarta.servlet.jsp.PageContext _jspx_page_context = null;  
+
+***<@! @>은  _jspService() 외부에 있다. 
+외부에서 바로 사용은 불가능하다.  _jspService내부에서 함수를 호출해야 한다.
+<%! 
+	public String useImplicitObject(){
+		return this.getServletContext().getRealPath("/02ImplicitObject");
+	}
+	
+	public String useImplicitObject(ServletContext app){
+		return app.getRealPath("/02ImplicitObject");
+	}
+%>
+
+public void _jspService(){
+
+  final jakarta.servlet.ServletContext application; # 자동으로 생성된다.
+
+ useImplicitObject();
+ useImplicitObject(application);
+}
+
+
+get: 쿼리스트링이 url에 있음
+post : 쿼리스트링이 url에 없음
+         민감한 정보/보내는 정보 사이즈가 큰 경우
+
+URL				        http://localhost:8080/MustHaveJSP/02ImplicitObject/RequestWebInfo.jsp
+URI  URL에서 프로토콜/서버명 서버포트 제외 /MustHaveJSP/02ImplicitObject/RequestWebInfo.jsp
+
+
+
+같은  name인 경우 ,radio button 은 1개만 선택
+check button은  여러개 선택/같은  name인 경우 ,check button은 배열로 넘어온다.
+textarea는 \n으로 여러 줄 쓸 수 있다.
+
+
+jsp war file 만들고 배포(with tomcat)
+만드는 방법 : project-exprt-war file -바탕화면에 파일 위치 저장
+배포 :01.developkits-apache-tomcat-10.1.24-webapps 에 바탕화면에 파일 위치 저장된 war 파일 옮기기
+서버의 물리적 경로 얻어오기 :  01.developkits-apache-tomcat-10.1.24-bin에서 주소창 클릭하고 cmd 입력
+			cmd 열리고 cd 되었으면 dir *.bat
+			startup.bat
+			브라우저에서 http://localhost:8080/MustHaveJSP/02ImplicitObject/ApplicationMain.jsp 접근해보면 물리적경로가 다름을 확인할 수 있음
+서버의 물리적 경로 얻어오기
+application 내장 객체 : C:\01DevelopKits\apache-tomcat-10.1.24\webapps\MustHaveJSP\02ImplicitObject
+
+*ip 찾기
+cmd 에서 ipconfig -링크-로컬 IPv6 주소
+
+status code (https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.4)
+4xx 클라이언트 오류
+5xx 서버 오류
