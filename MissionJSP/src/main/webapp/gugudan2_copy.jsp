@@ -22,7 +22,7 @@
 		for(int dan=2;dan<=9; dan+=col) {
 			for(int i=1;i<=9;i++) {
 				for(int j=dan ; j<dan+col && j<=9;j++) {
-					out.print(String.format("%d * %d = %d ",j, i, multi(j, i));
+					out.print(String.format("%2d * %2d = %2d ",j, i, multi(j, i));
 				}
 				out.print("<br />");
 			}
