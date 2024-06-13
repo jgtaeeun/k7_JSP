@@ -1,3 +1,6 @@
+jsp파일 주석 ctrl shift c
+
+
 <JSP교재 0장 참고>
 자바 home, path 설정
 톰캣설정
