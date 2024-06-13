@@ -1,6 +1,9 @@
 jsp파일 주석 ctrl shift c
 
+java resources에 저장한 class import 하기
+<%@ page import = "utils.CookieManager" %>
 
+===========================
 <JSP교재 0장 참고>
 자바 home, path 설정
 톰캣설정
@@ -111,3 +114,18 @@ cmd 에서 ipconfig -링크-로컬 IPv6 주소
 status code (https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.4)
 4xx 클라이언트 오류
 5xx 서버 오류
+
+ ===========================
+ 4장 쿠키
+<script />태그를 만들어서 내장객체out을 이용하여 브라우저에 바로 출력하기
+public static void alertLocation(String msg, String url, JspWriter out) {
+		try {
+			String script=""
+							+ "<script>"
+							+"   alert('" + msg + "');"
+							+"   location.href='" + url +" ' ; "
+							+ "</script>";
+			out.println(script);
+		}
+		catch (Exception e) {}
+	}
