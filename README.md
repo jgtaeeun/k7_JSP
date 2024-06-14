@@ -132,3 +132,30 @@ public static void alertLocation(String msg, String url, JspWriter out) {
 		}
 		catch (Exception e) {}
 	}
+
+ =========================== =========================== =========================== =========================== ===========================
+ 5장 데이터베이스
+
+ JDBConnect jdbc = new JDBConnect();
+String sql = "SELECT id, pass, name, regidate From member";
+Statement stmt = jdbc.getCon().createStatement();
+ResultSet rs = stmt.executeQuery(sql);
+while (rs.next()){
+		String id = rs.getString(1);
+		String pw= rs.getString(2);
+		String name= rs.getString(3);
+		java.sql.Date regidate=rs.getDate("regidate");
+		
+		out.println(String.format("%s %s %s %s", id, pw, name, regidate)+"<br />");
+}
+jdbc.close();
+----------------------------------
+Class.forName("com.mysql.cj.jdbc.Driver");
+String url="jdbc:mysql://localhost:3306/musthave";
+String id="scott";
+String pwd="tiger";
+con=DriverManager.getConnection(url, id, pwd);
+System.out.println("DB연결 성공 (기본생성자)");
+-------------------------------------
+*자바빈즈규약에 의해 클래스 내 생성자 변수, 필드는 private
+*getString()으로 int, String, date 다 가능
