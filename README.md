@@ -3,6 +3,9 @@ jsp파일 주석 ctrl shift c
 java resources에 저장한 class import 하기
 <%@ page import = "utils.CookieManager" %>
 
+
+mysql 3306
+tomcat 80
 ===========================
 <JSP교재 0장 참고>
 자바 home, path 설정
