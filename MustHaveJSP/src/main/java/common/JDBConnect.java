@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import jakarta.servlet.ServletContext;
 
 public class JDBConnect {
-	private Connection con;
+	public Connection con;
 	
 	public JDBConnect() {
 		try {
