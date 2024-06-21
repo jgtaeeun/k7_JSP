@@ -114,6 +114,133 @@ public class BoardDAO extends JDBConnect{
 	public BoardDTO selectView(String num) {
 		BoardDTO dto = new BoardDTO();
 		
+		String query = "SELECT B.*, M.name " + " FROM member M INNER JOIN board B "
+						+ " ON M.id=B.id "+ " where num = ? ";
+		System.out.println(query);
 		
+		PreparedStatement pt =null;
+		ResultSet rs = null;
+		
+		try {
+			pt=con.prepareStatement(query);
+			pt.setString(1, num);
+			
+			rs=pt.executeQuery();
+			
+			if (rs.next()) {
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setId(rs.getString("id"));
+				dto.setVisitcount(rs.getString("visitcount"));
+				dto.setName(rs.getString("name"));
+			}
+			rs.close();
+			pt.close();
+		}catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
+	//게시물의 조회수 증가
+	public void updateVisitCount(String num) {
+		String query = "Update board set  visitcount = visitcount +1  where num = ? ";
+
+		PreparedStatement pt =null;
+		
+		try {
+			pt=con.prepareStatement(query);
+			pt.setString(1, num);
+			
+			pt.executeUpdate();
+		
+			
+			pt.close();
+		}catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int updateEdit(BoardDTO dto) {
+		int result = 0;
+		PreparedStatement pt =null;
+		try {
+			String query = "update board set title = ?, content = ? where num = ?";
+			
+			pt=con.prepareStatement(query);
+			pt.setString(1, dto.getTitle());
+			pt.setString(2, dto.getContent());
+			pt.setString(3, dto.getNum());
+			
+			result =pt.executeUpdate();
+			
+			pt.close();
+		}catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int deletePost(BoardDTO dto) {
+		int result = 0 ;
+		PreparedStatement pt =null;
+		try {
+			String query = "delete from board where num = ?";
+			pt=con.prepareStatement(query);
+			pt.setString(1, dto.getNum());
+			
+			result =pt.executeUpdate();
+			
+			pt.close();
+		}catch(Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//------------------------------------------페이징 기능 지원
+	public List<BoardDTO> selectListPage(Map<String, Object> map){
+		 List<BoardDTO> bbs = new Vector<BoardDTO>();
+		 
+		 String query = "select * from board ";
+		 
+		 if (map.get("searchWord")!= null) {
+			 query += "where " + map.get("searchField") 
+			 			+ " like '%" + map.get("searchWord") 
+			 			+ "%' " ;
+ 		 }
+		 query += " order by num desc limit ?,?" ;
+		 PreparedStatement pt = null;
+		 ResultSet rs =null;
+		 try {
+			 pt = con.prepareStatement(query);
+			 pt.setInt(1,(int) map.get("start"));
+			 pt.setInt(2,(int) map.get("pageSize"));
+			 rs=pt.executeQuery();
+			 
+			 while(rs.next()) {
+				 BoardDTO dto = new BoardDTO();
+				 dto.setNum(rs.getString("num"));
+				 dto.setTitle(rs.getString("title"));
+				 dto.setContent(rs.getString("content"));
+				 dto.setPostdate(rs.getDate("postdate"));
+				 dto.setId(rs.getString("id"));
+				 dto.setVisitcount(rs.getString("visitcount"));
+				 bbs.add(dto);
+			 }
+		 }catch(Exception e) {
+			 System.out.println("게시물 조회 중 예외 발생");
+			 e.printStackTrace();
+		 }
+		 return bbs;
 	}
 }
