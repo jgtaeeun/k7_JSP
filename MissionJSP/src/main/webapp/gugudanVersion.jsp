@@ -17,44 +17,44 @@ else 									url += String.format("?col=%s", col);
 
 response.sendRedirect(url);
 	
-=====================================================
-****gugudanForm.jsp
-<h2>구구단 Form</h2>
-	<form action="gugudanVersion.jsp" method="post">
-	<input type ="radio" name ="sel" value = "Type1"/> Type1
-	<input type="text" name ="val" value  =""/>단
-	<br />
+// =====================================================
+// ****gugudanForm.jsp
+// <h2>구구단 Form</h2>
+// 	<form action="gugudanVersion.jsp" method="post">
+// 	<input type ="radio" name ="sel" value = "Type1"/> Type1
+// 	<input type="text" name ="val" value  =""/>단
+// 	<br />
 	
-	<input type ="radio" name ="sel" value = "Type2"/>Type2
-	<input type ="radio" name ="val" value = "hor"/>Horizontal
-	<input type ="radio" name ="val" value = "ver"/>Vertical
+// 	<input type ="radio" name ="sel" value = "Type2"/>Type2
+// 	<input type ="radio" name ="val" value = "hor"/>Horizontal
+// 	<input type ="radio" name ="val" value = "ver"/>Vertical
 
-	<br />
+// 	<br />
 	
-	<input type ="radio" name ="sel" value="Type3"/>Type3
-	<input type="text" name ="val" value =""/>열
+// 	<input type ="radio" name ="sel" value="Type3"/>Type3
+// 	<input type="text" name ="val" value =""/>열
 	
-	<br />
-	<input type ="submit" value ="선택" />
-	</form>
+// 	<br />
+// 	<input type ="submit" value ="선택" />
+// 	</form>
 
-****gugudanVersion.jsp
-String sel = request.getParameter("sel");    # Type1. Type2. Type3
-String val = request.getParameter("val");   ##2~9/or, ver/~8
+// ****gugudanVersion.jsp
+// String sel = request.getParameter("sel");    # Type1. Type2. Type3
+// String val = request.getParameter("val");   ##2~9/or, ver/~8
 
-String url=null; String key=null;
+// String url=null; String key=null;
 
-if (sel.equals("Type1"))			
-	url="gugudan1.jsp";
-	key="dan";
+// if (sel.equals("Type1"))			
+// 	url="gugudan1.jsp";
+// 	key="dan";
 	
-else if (sel.equals("Type2"))	      	
-	url="gugudan1_1";
-	key="dir";
+// else if (sel.equals("Type2"))	      	
+// 	url="gugudan1_1";
+// 	key="dir";
 
 
-else 						
-	url="gugudan2";
-	key="col";
+// else 						
+// 	url="gugudan2";
+// 	key="col";
 
-request.getRequestDispatcher(url+"?"+key+"="+val).forward(request, response);
+// request.getRequestDispatcher(url+"?"+key+"="+val).forward(request, response);
