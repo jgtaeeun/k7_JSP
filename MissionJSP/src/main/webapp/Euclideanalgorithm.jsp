@@ -23,7 +23,11 @@ public int minValue(String num1, String num2){
 pageContext.setAttribute("num1",request.getParameter("num1")) ;
 pageContext.setAttribute("num2",request.getParameter("num2"));
 
+<<<<<<< HEAD
 if ((request.getMethod().equals("POST"))&& request.getParameter("num1")!="" && request.getParameter("num2")!="" ){
+=======
+if (request.getMethod().equals("POST")) {
+>>>>>>> 43ad8269d05f672ff7448f6101cf203df3c70d7b
 	int num1 = Integer.parseInt((String)pageContext.getAttribute("num1"));
 	int num2 = Integer.parseInt((String)pageContext.getAttribute("num2"));
 	
