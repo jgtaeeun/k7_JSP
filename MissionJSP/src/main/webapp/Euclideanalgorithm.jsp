@@ -8,43 +8,50 @@ public int maxValue(int num1, int num2){
 	
 }
 
+
 public int Euclidean(int n1, int n2){
 	
 	if (n2==0) return n2;
 	else return  Euclidean(n2, n1%n2);
 }
-public int minValue(String num1, String num2){
-	int result=Integer.parseInt(num1)*Integer.parseInt(num2)/Euclidean(Integer.parseInt(num1), Integer.parseInt(num2));
-	return result;
-}
+
 %>
 <%
 
 pageContext.setAttribute("num1",request.getParameter("num1")) ;
 pageContext.setAttribute("num2",request.getParameter("num2"));
 
-<<<<<<< HEAD
-if ((request.getMethod().equals("POST"))&& request.getParameter("num1")!="" && request.getParameter("num2")!="" ){
-=======
-if (request.getMethod().equals("POST")) {
->>>>>>> 43ad8269d05f672ff7448f6101cf203df3c70d7b
+
+if ((request.getMethod().equals("POST"))&& request.getParameter("num1")!=null && request.getParameter("num2")!=null  ){
+
+
 	int num1 = Integer.parseInt((String)pageContext.getAttribute("num1"));
 	int num2 = Integer.parseInt((String)pageContext.getAttribute("num2"));
 	
-	if (num1 >=num2) {
-		int maxVal = maxValue(num1, num2);
-		pageContext.setAttribute("maxVal", maxVal);
-		out.print(maxVal);
-		int minVal = (int) num1 * num2 / maxVal ;
-		pageContext.setAttribute("minVal", minVal );
+	if ( num1 !=0 &&  num2 !=0){
+		if (num1 >=num2 ) {
+			int maxVal = maxValue(num1, num2);
+			pageContext.setAttribute("maxVal", maxVal);
+			out.print(maxVal);
+			
+			try {
+				int minVal = (int) num1 * num2 / maxVal ;
+				pageContext.setAttribute("minVal", minVal );
+			}catch(Exception e){
+				out.print(e.getMessage());
+			}
 		
-	}else {
-		int maxVal = maxValue(num2, num1);
-		pageContext.setAttribute("maxVal", maxVal);
-		int minVal = num1 * num2 / maxVal ;
-		pageContext.setAttribute("minVal", minVal );
+		}else {
+			int maxVal = maxValue(num2, num1);
+			pageContext.setAttribute("maxVal", maxVal);
+			try {
+				int minVal = (int) num1 * num2 / maxVal ;
+				pageContext.setAttribute("minVal", minVal );
+			}catch(Exception e){
+				out.print(e.getMessage());
+			}
+		}
 	}
-	
 }
 %>
 
@@ -71,12 +78,16 @@ if (request.getMethod().equals("POST")) {
         </table>
         <input type="submit" value="선택"/>
     </form>
-	<% 
-	
+    <%
 	}
     catch(Exception e){
     	out.print(e.getMessage());
-   }
-   %>    
+    }
+	%>
+    
+	
+   
+        
 </body>
 </html>
+	

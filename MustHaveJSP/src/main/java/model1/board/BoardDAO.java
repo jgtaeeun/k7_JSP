@@ -243,4 +243,37 @@ public class BoardDAO extends JDBConnect{
 		 }
 		 return bbs;
 	}
+//	---------------------------
+	public List<BoardDTO> selectAllList (){
+		List<BoardDTO> bbs = new Vector <BoardDTO>();
+		
+		String query = "SELECT * FROM board where num between 1 and 10";
+		System.out.println(query);
+		Statement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				//한 행의 내용을 DTO에 저장 -><BoardDTO> 타입의 LIST에 저장
+				BoardDTO dto =  new BoardDTO();
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setId(rs.getString("id"));
+				dto.setVisitcount(rs.getString("visitcount"));
+				
+				bbs.add(dto);
+			}
+			rs.close();
+			stmt.close();
+		}catch (Exception e) {
+			System.out.println("게시물 조회 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return bbs;
+	}
 }
