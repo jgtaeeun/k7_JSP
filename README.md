@@ -159,3 +159,33 @@ System.out.println("DB연결 성공 (기본생성자)");
 -------------------------------------
 *자바빈즈규약에 의해 클래스 내 생성자 변수, 필드는 private
 *getString()으로 int, String, date 다 가능
+
+
+
+
+
+
+=========================================
+14장 MVC2 파일첨부게시판
+
+Servlet의 view로 보여줄 때 데이터가 없을 때 보여주는 것은 의미가 없다.
+
+1)web.xml에서 VIEWPATH를 지정하고
+ <context-param>
+   	<param-name>VIEWPATH</param-name>
+   	<param-value>/WEB-INF/views</param-value>
+  </context-param>
+
+
+2)서블릿 클래스에서 .jsp로 요청하는 request문을 다 고친다.
+ListController.java
+ req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
+->req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/List.jsp").forward(req, resp);
+
+ListController.java
+ViewController.java
+WriteController.java
+PassController.java
+EditController.java
+DownloadController.java
+모두 다 고친다.
