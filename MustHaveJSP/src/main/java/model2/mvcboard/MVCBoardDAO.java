@@ -194,4 +194,68 @@ public class MVCBoardDAO extends JDBConnect {
 		//성공적으로 추가한 행의 개수
 		return result;
 	}
+	
+	//입력한 비밀 번호가 지정한 일련번호의 게시물의 비밀번호와 일치하는지 확인한다.
+	public boolean confirmPassword(String pass, String idx) {
+		boolean isCorr=true;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select count(*) from mvcboard where pass=? and idx = ? ";
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1,pass);
+			psmt.setString(2,idx);
+			rs=psmt.executeQuery();
+			rs.next();
+			if (rs.getInt(1)==0) 
+				isCorr=false;
+		}catch(Exception e) {
+			isCorr=false;
+			e.printStackTrace();
+		}
+	
+		return isCorr;
+	}
+	
+	//삭제
+	public int deletePost(String idx) {
+		int result = 0;
+		PreparedStatement psmt = null;
+		try {
+			String sql = "delete from mvcboard where idx = ? ";
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, idx);
+			result=psmt.executeUpdate();
+			System.out.println(result);
+		}catch(Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+	
+		return result;
+	}
+	//게시글 수정
+	public int updatePost(MVCBoardDTO dto) {
+		int result = 0 ;
+		PreparedStatement psmt = null;
+		try {
+			String sql = "update  mvcboard  set "+
+					"title = ? , name= ? , content=?, ofile =?, sfile=? where idx = ? and pass =? ";
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4,dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getIdx());
+			psmt.setString(7, dto.getPass());
+			result=psmt.executeUpdate();
+			System.out.println(result);
+		}catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

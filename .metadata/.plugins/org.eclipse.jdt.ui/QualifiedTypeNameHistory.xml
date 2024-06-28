@@ -7,7 +7,7 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="common.JDBConnect"/>
-    <fullyQualifiedTypeName name="utils.JSFunction"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="utils.JSFunction"/>
     <fullyQualifiedTypeName name="fileupload.FileUtil"/>
 </qualifiedTypeNameHistroy>

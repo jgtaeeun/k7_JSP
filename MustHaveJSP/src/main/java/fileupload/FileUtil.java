@@ -137,4 +137,12 @@ public class FileUtil {
 		}
 	
 	}
+	
+	//게시물 삭제시 첨부한 파일을 삭제해야함
+	public static void deleteFile(HttpServletRequest req, String directory, String filename) {
+		String sDirectory = req.getServletContext().getRealPath(directory);
+		File file = new File (sDirectory + File.separator + filename );
+		if (file.exists())
+			file.delete();
+	}
 }

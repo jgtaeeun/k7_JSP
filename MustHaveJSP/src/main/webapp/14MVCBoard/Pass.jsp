@@ -19,6 +19,7 @@ function validateForm(form){
 <body>
 	<h2>파일 첨부형 게시판 -비밀번호 검증(Pass)</h2>
 	<form name="writeFrm" method="post" action="../mvcboard/pass.do" onsubmit="return validateForm(this);">
+	<!-- EL 내장 객체 param -->
 	<input type="hidden" name="idx" value="${param.idx}" />
 	<input type="hidden" name="mode" value="${param.mode}"  />
 	<table border="1" width="90%">
