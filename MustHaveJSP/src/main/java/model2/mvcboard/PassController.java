@@ -13,12 +13,14 @@ import model2.mvcboard.MVCBoardDAO;
 import model2.mvcboard.MVCBoardDTO;
 import utils.JSFunction;
 
+
 @WebServlet("/mvcboard/pass.do")
 public class PassController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	req.setAttribute("mode", req.getParameter("mode"));
-	req.getRequestDispatcher("/14MVCBoard/Pass.jsp").forward(req, resp);
+	//req.getRequestDispatcher("/14MVCBoard/Pass.jsp").forward(req, resp);
+	req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/Pass.jsp").forward(req, resp);
 	}
 		@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

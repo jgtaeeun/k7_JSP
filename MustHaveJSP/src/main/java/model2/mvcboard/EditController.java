@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
+
 @WebServlet("/mvcboard/edit.do")
 @MultipartConfig(
 		maxFileSize=1024*1024*1,
@@ -24,8 +25,8 @@ public class EditController extends HttpServlet{
 		MVCBoardDAO dao= new MVCBoardDAO();
 		MVCBoardDTO dto =dao.selectView(idx);
 		req.setAttribute("dto" , dto);
-		req.getRequestDispatcher("/14MVCBoard/Edit.jsp").forward(req, resp);
-		
+		//req.getRequestDispatcher("/14MVCBoard/Edit.jsp").forward(req, resp);
+		req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/Edit.jsp").forward(req, resp);
 	}
 	@Override 
 	
