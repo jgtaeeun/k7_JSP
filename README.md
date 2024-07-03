@@ -187,5 +187,18 @@ ViewController.java
 WriteController.java
 PassController.java
 EditController.java
-DownloadController.java
-모두 다 고친다.
+DownloadController.java 모두 다 고친다.
+
+=========================================================================
+html 사용하기 위한 문구
+response.setContentType("text/html;charset=utf-8")
+contenttype 이 메소드는 브라우저에 표현할 때 어떤 캐릭터 셋을 사용할지 정하는 것
+
+
+참고사이트)https://jong99.tistory.com/92
+
+
+
+printwriter
+참고사이트)https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html
+
